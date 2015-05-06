@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="login-container">
+		<h2>Login</h2>
+    <form>
+    	<label class="sr-only" for="userEmail">Email address</label>
+    	<input type="text" class="form-control" placeholder="email" name="email" id="userEmail">
+    	<label class="sr-only" for="userPassword">Password</label>
+    	<input type="text" class="form-control" placeholder="password" name="password" id="userPassword">
+    	<button class="btn btn-lg btn-primary btn-block" type="submit">Login/Sign Up</button>
+    </form>
+  </div>
+{% endblock %}

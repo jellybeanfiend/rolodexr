@@ -1,0 +1,25 @@
+h1{
+	text-align: center;
+}
+.login-container{
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.login-container input, .login-container button{
+	margin-top: 5px;
+}
+
+.contact-card{
+	background-color: #ccc;
+	width: 30%;
+	display: flex;
+}
+
+.contact-card h3{
+	padding: 10px;
+}
+
+.contact-card ul{
+	list-style-type: none;
+}
