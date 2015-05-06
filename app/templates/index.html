@@ -1,8 +1,16 @@
-<html>
-  <head>
-    <title>{{ title }} - microblog</title>
-  </head>
-  <body>
-      <h1>Hello, {{ user.nickname }}!</h1>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+hiiii {{ current_user.id }}
+<a href="{{ url_for('security.logout') }}">Logout</a>
+
+    <div class="contact-card">
+      <img src="/static/imgs/icon.jpg">
+      <div class="contact-text">
+        <h3>Sevena Skeels</h3>
+        <ul>
+          <li>904-343-7199</li>
+          <li>34223 aerawer er.</li>
+        </ul>
+      </div>
+    </div>
+{% endblock %}
