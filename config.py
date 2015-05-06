@@ -1,0 +1,7 @@
+import os
+
+DEBUG = True
+SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+SECRET_KEY = os.environ['SECRET_KEY']
+WTF_CSRF_ENABLED = os.environ['WTF_CSRF_ENABLED']
+WTF_CSRF_ENABLED = os.environ['WTF_CSRF_ENABLED']
