@@ -56,4 +56,4 @@ def create_user():
     user_datastore.create_user(email='matt@nobien.net', password='password')
     db.session.commit()
 
-from app import views, models
+from app import views
