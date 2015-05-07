@@ -13,4 +13,8 @@ hiiii {{ current_user.id }}
         </ul>
       </div>
     </div>
+
+    {% for contact in contacts %}
+      {{ contact }}
+    {% endfor %}
 {% endblock %}
