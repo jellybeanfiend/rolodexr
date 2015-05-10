@@ -10,16 +10,59 @@ h1{
 	margin-top: 5px;
 }
 
-.contact-card{
+.controls{
+	width: 40%;
+	margin: 0 auto;
+	display:flex;
+	justify-content: space-around;
+}
+
+.controls button{
+	margin-left: 20px;
+}
+
+.contact-card:before{
+	content: "";
+	position: absolute;
+	right: 0;
+	top: -10;
+	width: 20px;
+}
+
+.contacts > li{
+	background-color: #ccc;
+	display: flex;
+	margin: 15px 15px;
+	width: 30%;
+	/*flex: 1 30%;*/
+}
+
+/*.contact-card{
 	background-color: #ccc;
 	width: 30%;
 	display: flex;
-}
+	margin: 15px 15px;
+}*/
 
 .contact-card h3{
-	padding: 10px;
+	padding-left: 5px;
+	margin: 5px;
 }
 
 .contact-card ul{
 	list-style-type: none;
+	padding-left: 5px;
+	margin: 5px;
 }
+
+
+.contacts{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: space-between;
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+

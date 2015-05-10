@@ -1,20 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-hiiii {{ current_user.id }}
-<a href="{{ url_for('security.logout') }}">Logout</a>
-
-    <div class="contact-card">
-      <img src="/static/imgs/icon.jpg">
-      <div class="contact-text">
-        <h3>Sevena Skeels</h3>
-        <ul>
-          <li>904-343-7199</li>
-          <li>34223 aerawer er.</li>
-        </ul>
-      </div>
+  <a href="{{ url_for('security.logout') }}">Logout</a>
+  <div class="controls">
+    <input type="text" class="form-control" id="filter" placeholder="Search for...">
+    
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+        Sort By
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-sort="first">First Name</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-sort="last">Last Name</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-sort="group">Group</a></li>
+      </ul>
     </div>
+    
+    <button class="btn btn-default" id="manage">Manage Groups</button>
 
+  </div>
+
+  <ul class="contacts">
+    <li>
+      <h3>ADD CONTACT</h3>
+    </li>
     {% for contact in contacts %}
-      {{ contact }}
+        <li class="contact-card">
+          <img src="/static/imgs/icon.jpg">
+          <div class="contact-text">
+            <h3 data-type="name">{{ contact.name }}</h3>
+            <ul>
+              <li data-type="phone">{{ contact.phone or 'phone' }}</li>
+              <li data-type="email">{{ contact.email or 'email' }}</li>
+              <li data-type="address">{{ contact.address or 'address' }}</li>
+            </ul>
+          </div>
+      </li>
     {% endfor %}
+  </ul>
+
 {% endblock %}

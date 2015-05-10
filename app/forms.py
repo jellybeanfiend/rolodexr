@@ -3,7 +3,7 @@ from wtforms import StringField, BooleanField
 from wtforms.validators import DataRequired
 
 class AddContact(Form):
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name')
     phone = StringField('phone')
     address = StringField('address')
     email = StringField('email')
