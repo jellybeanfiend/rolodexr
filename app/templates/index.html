@@ -48,7 +48,7 @@
       </form>
     </li>
     {% for contact in contacts %}
-      <li data-id="{{ contact.id }}" class="inactive contact-card">
+      <li data-id="{{ contact.id }}" class="inactive contact-card" style="background: #016273 url({{config['UPLOADS'] + (contact.image or 'test.svg')}})">
         <form action="/editcontact" method="POST" enctype="multipart/form-data">
           {{ editform.hidden_tag() }}
           <h3 data-type="name">
@@ -69,11 +69,11 @@
           </div><!-- /options-bottom -->
           
           <div class="contact-info">
-            <label class="upload-label btn btn-lg btn-primary" style="background: url({{ config['UPLOADS'] + (contact.image or 'test.svg')}}); background-size: cover">
+            <label class="upload-label btn btn-lg btn-primary" style="background: url({{ config['UPLOADS'] + (contact.image or '/test.svg')}}); background-size: cover">
               {{ render_field(editform.upload, class="uploadimg", disabled="true") }}
               <span><span class="glyphicon glyphicon-plus"></span> Edit Image</span>
             </label>
-            <img src="{{ config['UPLOADS'] + (contact.image or 'test.svg') }}">
+            <!-- <img src="{{ config['UPLOADS'] + (contact.image or 'test.svg') }}"> -->
             {{ render_field(editform.contactid, hidden="true", value=contact.id) }}
             <ul>
               <li data-type="phone">
