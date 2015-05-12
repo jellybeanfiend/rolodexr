@@ -1,13 +1,31 @@
-{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% extends "base.html" %}
+{% from "security/_macros.html" import render_label, render_field_with_errors, render_field %}
+{% block content %}
 {% include "security/_messages.html" %}
-<h1>Register</h1>
+
+<div class="auth-container register">
 <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form">
   {{ register_user_form.hidden_tag() }}
-  {{ render_field_with_errors(register_user_form.email) }}
-  {{ render_field_with_errors(register_user_form.password) }}
+  <div class="form-group">
+  {{ render_label(register_user_form.email, class="sr-only") }}
+  {{ render_field_with_errors(register_user_form.email, type="email", placeholder="Email", class="form-control") }}
+  <p class="hidden">Email is required</p>
+  </div>
+  <div class="form-group">
+  {{ render_label(register_user_form.password, class="sr-only") }}
+  {{ render_field_with_errors(register_user_form.password, placeholder="Password", class="form-control") }}
+  <p class="hidden">Password is required</p>
+  </div>
   {% if register_user_form.password_confirm %}
-    {{ render_field_with_errors(register_user_form.password_confirm) }}
+  <div class="form-group">
+  	{{ render_label(register_user_form.password, class="sr-only") }}
+    {{ render_field_with_errors(register_user_form.password_confirm, placeholder="Confirm Password", class="form-control") }}
+    <p class="hidden">Password confirmation is required</p>
+    <p class="passwords hidden">Passwords do not match</p>
+  </div>
   {% endif %}
-  {{ render_field(register_user_form.submit) }}
+
+  <input type="submit" value="Register" class="auth-submit btn btn-lg btn-block">
 </form>
-{% include "security/_menu.html" %}
+</div>
+{% endblock %}

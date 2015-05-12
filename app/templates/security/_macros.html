@@ -5,14 +5,14 @@
 {% macro render_field_with_errors(field) %}
     {{ field(**kwargs)|safe }}
     {% if field.errors %}
-      <ul>
+      <ul class="form-errors">
       {% for error in field.errors %}
-        <li>{{ error }}</li>
+        <li class="alert alert-danger" role="alert">{{ error }}</li>
       {% endfor %}
       </ul>
     {% endif %}
 {% endmacro %}
 
 {% macro render_field(field) %}
-  <p>{{ field(**kwargs)|safe }}</p>
+  {{ field(**kwargs)|safe }}
 {% endmacro %}

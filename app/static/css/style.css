@@ -1,68 +1,318 @@
-h1{
-	text-align: center;
-}
-.login-container{
-	max-width: 300px;
-	margin: 0 auto;
+body{
+	background: #008299 url(/static/imgs/cubes.png) !important;;
+	margin-top: 20px;
 }
 
-.login-container input, .login-container button{
-	margin-top: 5px;
+h1{
+	text-align: center;
+	font-family: 'Ubuntu Mono';
+	font-size: 50px;
+	color: #fff;
+}
+
+/** LOGIN & REGISTER */
+
+.auth-container a:link, a:visited, a:active{
+	color: #fff;
+	text-decoration: underline;
+}
+
+p{
+	color: #fff;
+	margin-top:10px;
+}
+
+.form-errors{
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	margin-top:10px;
+}
+
+.auth-container{
+	max-width: 300px;
+	text-align:center;
+	margin: 0 auto;
+	padding: 20px 20px 10px 20px;
+	background-color: rgba(1, 64, 76, 0.35);
+	border-radius:10px;
+}
+
+.register{
+	padding-bottom: 20px;
+}
+
+.auth-container input[type=submit]{
+	background-color:#004551;
+	color: #fff;
+}
+
+.auth-container input[type=submit]:hover{
+	background-color: #01343D;
+}
+
+/** DASH **/
+
+.options button{
+	background-color: transparent;
+	border: 0;
+	text-align:right;
+	padding: 5px;
+}
+
+form{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.logout{
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
 
 .controls{
-	width: 40%;
+	width: 90%;
 	margin: 0 auto;
-	display:flex;
-	justify-content: space-around;
 }
 
-.controls button{
-	margin-left: 20px;
+label.upload-label input[type="file"] {
+    position: fixed;
+    top: -1000px;
 }
 
-.contact-card:before{
-	content: "";
+.edit .upload-label:before{
+  position: absolute;
+  content:"";
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.upload-label{
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-radius: 50%;
+    flex-shrink:0;
+    cursor: pointer;
+    margin: 10px;
+    margin-top: 0px;
+	padding: 0;
+	height: 125px;
+	position: relative;
+	width: 125px;
+	display: flex;
+	border: 0;
+	justify-content:center;
+	align-items: center;
+}
+
+.upload-label span{
+    z-index: 10;
+}
+
+#add-contact .upload-label{
+	background-color: #2299BA;
+}
+
+.active{
+	background-color: rgba(255, 255, 255, 1);
+	display: flex;
+	margin: 15px 15px;
+	min-height: 215px;
+	position: relative;
+	width: 390px;
+	border-radius: 10px;
+	border-right: #005B6B 3px solid;
+	border-top: #97E7F5 1px solid;
+	border-left: #97E7F5 1px solid;
+	border-bottom: #005B6B 3px solid;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.inactive{
+	background-color: #016273;
+	display: flex;
+	margin: 15px 15px;
+	width: 215px;
+	min-height: 215px;
+	position: relative;
+	border-radius: 10px;
+	align-items: center;
+	cursor: pointer;
+
+}
+
+.active h3{
+	color: #06414C;
+	text-align: left;
+	margin: 10px 0px 10px 10px;
+}
+
+.active .img-container{
+	width: 125px;
+	height: 125px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin-left: 10px;
+
+}
+
+.inactive:before {
+  position: absolute;
+  content:"";
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.4);
+}
+
+.inactive:hover:before{
+	background: transparent;
+}
+
+.inactive h3{
 	position: absolute;
-	right: 0;
-	top: -10;
-	width: 20px;
+	bottom: 0;
+	color: #fff;
+	font-size: 30px;
+	left: 10px;
 }
 
-.contacts > li{
-	background-color: #ccc;
-	display: flex;
-	margin: 15px 15px;
-	width: 30%;
-	/*flex: 1 30%;*/
+.inactive img{
+	width: 100%;
+	border-radius: 10px;
+	height: 215px;
 }
 
-/*.contact-card{
-	background-color: #ccc;
-	width: 30%;
-	display: flex;
-	margin: 15px 15px;
-}*/
-
-.contact-card h3{
-	padding-left: 5px;
-	margin: 5px;
+.add-contact-form input{
+	margin-top: 5px;
 }
-
-.contact-card ul{
-	list-style-type: none;
-	padding-left: 5px;
-	margin: 5px;
-}
-
 
 .contacts{
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	align-content: space-between;
-	list-style-type:none;
-	margin: 0;
+	list-style-type: none;
+	margin: 0 auto;
 	padding: 0;
+	width: 90%;
 }
 
+.save-contact{
+	color: green;
+}
+
+.inactive .contact-info ul, .inactive .contact-info .upload-label,  .inactive .options, .inactive .name-input {
+	display: none;
+}
+
+.active .options-top{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+
+.active .options-bottom{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+    position:absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.active .contact-info{
+	padding:5px;
+}
+
+.contact-info{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+	width:100%;
+}
+
+
+#add-contact input, .contact-info input{
+	border: 0px;
+	background-color: transparent;
+}
+
+.danger-border{
+	border: 1px solid red !important;
+}
+
+.name-input{
+	font-size:24px;
+	width:90%;
+	border: 0;
+}
+
+.active .contact-info ul{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+	padding-bottom: 20px;
+}
+
+.pencil{
+	color: green;
+	font-size: 12px;
+	visibility: hidden;
+}
+
+.glyphicon{
+	padding-right: 5px;
+}
+
+.contact-card label span{
+	visibility: hidden;
+}
+
+.edit .pencil, #add-contact .pencil, .edit label span{
+	visibility: visible;
+}
+
+.active img{
+	display: none;
+}
+
+h3 .pencil{
+	padding-left: 10px;
+}
+
+.upload-img{
+	font-size: 40px;
+}
+
+@media screen and (max-width: 300px) {
+	h3 .pencil{
+		display:none;
+	}
+}
+
+@media screen and (min-width: 500px){
+	.controls{
+		width: 300px;
+	}
+}

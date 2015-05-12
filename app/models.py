@@ -20,8 +20,8 @@ class User(db.Model, UserMixin):
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
     contacts = db.relationship('Contact', backref='user', lazy='dynamic')
-    groups = db.relationship('Group', backref='user', lazy='dynamic')
 
+# Contact Model
 class Contact(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
@@ -29,10 +29,4 @@ class Contact(db.Model):
 	email = db.Column(db.String(255))
 	phone = db.Column(db.String(20))
 	address = db.Column(db.Text)
-	group = db.Column(db.String(255))
-	tags = db.Column(db.Text)
-
-class Group(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
-	name = db.Column(db.String(255))
+	image = db.Column(db.Text)
