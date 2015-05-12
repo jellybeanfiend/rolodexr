@@ -1,42 +1,97 @@
 {% extends "base.html" %}
+{% from "security/_macros.html" import render_label, render_field_with_errors, render_field %}
 {% block content %}
-  <a href="{{ url_for('security.logout') }}">Logout</a>
-  <div class="controls">
+  <a href="{{ url_for('security.logout') }}" class="logout">Logout</a>
+  <div class="input-group controls">
     <input type="text" class="form-control" id="filter" placeholder="Search for...">
-    
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-        Sort By
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-sort="first">First Name</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-sort="last">Last Name</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-sort="group">Group</a></li>
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sort By <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><a href="#" data-sort="first">First Name</a></li>
+        <li><a href="#" data-sort="last">Last Name</a></li>
       </ul>
-    </div>
-    
-    <button class="btn btn-default" id="manage">Manage Groups</button>
-
-  </div>
+    </div><!-- /input-group-btn -->
+  </div><!-- /input-group -->
 
   <ul class="contacts">
-    <li>
-      <h3>ADD CONTACT</h3>
+    <li class="inactive" id="add-contact">
+      <form action="/addcontact" method="POST" enctype="multipart/form-data">
+        {{ addform.hidden_tag() }}
+        <h3 data-type="name">
+          ADD CONTACT
+        </h3>
+        <div class="options options-bottom">
+          <button class="save-contact">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true">save</span>
+          </button>
+        </div><!-- /options-bottom -->
+        <div class="contact-info">
+          <label class="upload-label btn-lg btn-primary">
+            {{ render_field(addform.upload, class="uploadimg") }}
+            <span><span class="glyphicon glyphicon-plus"></span> Add Image</span>
+          </label>
+          <ul>
+            <li data-type="phone">
+              <span class="glyphicon glyphicon-pencil pencil" aria-hidden="true"></span>
+              {{ render_field(addform.phone, placeholder="Phone Number") }}
+            </li>
+            <li data-type="email">
+              <span class="glyphicon glyphicon-pencil pencil" aria-hidden="true"></span>
+              {{ render_field(addform.email, placeholder="Email") }}
+            </li>
+            <li data-type="address">
+              <span class="glyphicon glyphicon-pencil pencil" aria-hidden="true"></span>
+              {{ render_field(addform.address, placeholder="Home Address") }}
+            </li>
+          </ul>
+        </div><!-- /contact-info -->
+      </form>
     </li>
     {% for contact in contacts %}
-        <li class="contact-card">
-          <img src="/static/imgs/icon.jpg">
-          <div class="contact-text">
-            <h3 data-type="name">{{ contact.name }}</h3>
+      <li data-id="{{ contact.id }}" class="inactive contact-card">
+        <form action="/editcontact" method="POST" enctype="multipart/form-data">
+          {{ editform.hidden_tag() }}
+          <h3 data-type="name">
+            {{ contact.name }}
+          </h3>
+          <div class="options options-top">
+            <button class="collapse-contact">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
+          </div><!-- /options-top -->
+          <div class="options options-bottom">
+            <button class="delete-contact text-danger">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+            <button class="edit-contact text-success">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+          </div><!-- /options-bottom -->
+          
+          <div class="contact-info">
+            <label class="upload-label btn btn-lg btn-primary" style="background: url({{ config['UPLOADS'] + (contact.image or 'test.svg')}}); background-size: cover">
+              {{ render_field(editform.upload, class="uploadimg", disabled="true") }}
+              <span><span class="glyphicon glyphicon-plus"></span> Edit Image</span>
+            </label>
+            <img src="{{ config['UPLOADS'] + (contact.image or 'test.svg') }}">
+            {{ render_field(editform.contactid, hidden="true", value=contact.id) }}
             <ul>
-              <li data-type="phone">{{ contact.phone or 'phone' }}</li>
-              <li data-type="email">{{ contact.email or 'email' }}</li>
-              <li data-type="address">{{ contact.address or 'address' }}</li>
+              <li data-type="phone">
+                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                {{ render_field(editform.phone, placeholder="Phone Number", value=contact.phone, disabled="true") }}
+              </li>
+              <li data-type="email">
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                {{ render_field(editform.email, placeholder="Email", value=contact.email, disabled="true") }}
+              </li>
+              <li data-type="address">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                {{ render_field(editform.address, placeholder="Home Address", value=contact.address, disabled="true") }}
+              </li>
             </ul>
-          </div>
+          </div><!-- contact-info -->
+        </form>
       </li>
     {% endfor %}
   </ul>
-
 {% endblock %}
