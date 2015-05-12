@@ -1,2 +1,4 @@
 .env
 config.py
+*.pyc
+app/static/uploads/*
