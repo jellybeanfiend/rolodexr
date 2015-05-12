@@ -86,7 +86,7 @@
               </li>
               <li data-type="address">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                {{ render_field(editform.address, placeholder="Home Address", value=contact.address, disabled="true") }}
+                <textarea name="address" id="address" placeholder="Address" disabled="true">{{contact.address}}</textarea>
               </li>
             </ul>
           </div><!-- contact-info -->

@@ -83,24 +83,27 @@ $(document).ready(function(){
 		var contactinfo = $(form).find('.contact-info')
 		$(this).html('<span class="glyphicon glyphicon-ok" aria-hidden="true">save</span>')
 		$(form).addClass('edit')
-		$(contactinfo).find('input').each(function(){
+		$(contactinfo).find('input, textarea').each(function(){
 			$(this).removeAttr('disabled')
 		})
 		$(this).click(saveContact)
 	})
 
 	// Save changes after an edit/add
-	function saveContact(){
-		event.stopPropagation()
-		event.preventDefault();
-		var form = $(this).closest('form')
+	function saveContact(btn){
+		var form = $(btn).closest('form')
 		var name = $(form).find('.name-input')
+		console.log(name)
 		if(validateName(form)){
 			$(form).submit();
 		}
 	}
 
-	$('.save-contact').delegate('form', 'click', saveContact)
+	$('.save-contact').click(function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		saveContact(this)
+	})
 
 	// ensure a contact card at least has a name - it would look weird without one!
 	function validateName(form){

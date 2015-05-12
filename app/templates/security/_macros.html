@@ -16,3 +16,7 @@
 {% macro render_field(field) %}
   {{ field(**kwargs)|safe }}
 {% endmacro %}
+
+{% macro render_textarea(field) %}
+  <textarea>{{ field(**kwargs)|safe }}</textarea>
+{% endmacro %}
