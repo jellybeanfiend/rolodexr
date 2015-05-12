@@ -20,6 +20,7 @@ def home():
 
 
 @app.route('/addcontact', methods=['GET', 'POST'])
+@login_required
 def addcontact():
     form = AddContact()
     if request.method == 'POST':
@@ -34,6 +35,7 @@ def addcontact():
     return redirect('/index')
 
 @app.route('/editcontact', methods=['GET', 'POST'])
+@login_required
 def editcontact():
 	form = EditContact()
 	if request.method == 'POST' and form.validate_on_submit():
@@ -55,6 +57,7 @@ def editcontact():
 		return redirect('/index')
 
 @app.route('/deletecontact', methods=['GET', 'POST'])
+@login_required
 def deletecontact():
 	contactid = request.form['id']
 	contact = Contact.query.filter_by(id=contactid).first()
